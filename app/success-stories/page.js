@@ -1,6 +1,6 @@
-import { Card, CardHeader, Section } from "@/app/components/UI";
+import { Card, Section } from "@/app/components/UI";
 import { SUCCESS_STORIES } from "@/app/data/stories";
-import { GraduationCap, Award, CheckCircle, Star } from "lucide-react";
+import { GraduationCap, Star,CheckCircle  } from "lucide-react";
 import Link from "next/link";
 
 export default function SuccessStoriesPage() {
@@ -30,7 +30,7 @@ export default function SuccessStoriesPage() {
                 </div>
 
                 <blockquote className="text-slate-600 italic border-l-2 border-indigo-200 pl-4 mb-6">
-                  "{story.quote}"
+                  &ldquo;{story.quote}&rdquo;
                 </blockquote>
 
                 <div className="border-t border-slate-100 pt-4">
