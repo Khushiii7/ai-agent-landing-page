@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Sparkles, ArrowRight, ShieldCheck, MessageSquare, School, Globe2, Users, Star, ChevronRight, BookOpen, Clock, PhoneCall } from "lucide-react";
+import React, { useState } from "react";
+import { Sparkles, ShieldCheck, MessageSquare, School, PhoneCall,Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Landing from "./components/Landing";
@@ -30,8 +29,6 @@ const MOCK_UNIVERSITIES = [
   { id: "uw", name: "University of Waterloo", country: "Canada", cost: "₹26–34L/yr", deadline: "Feb 1, 2026", tags: ["Co-op", "CS"], rank: 1, admitEase: "Tough" },
   { id: "uoa", name: "University of Auckland", country: "New Zealand", cost: "₹18–24L/yr", deadline: "Nov 30, 2025", tags: ["Value", "Safe"], rank: 3, admitEase: "Easy" },
 ];
-
-// ... [rest of the component code] ...
 
 export default function LeapAIProfileAgent() {
   const [route, setRoute] = useState("landing");
@@ -68,17 +65,18 @@ export default function LeapAIProfileAgent() {
               className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-transform active:scale-[0.98] bg-indigo-600 text-white hover:bg-indigo-700"
             >
               Try AI Agent
+              <Sparkles className="w-4 h-4" />
             </button>
           </div>
         </div>
       </header>
 
-      <main>
+      <main className="min-h-[calc(100vh-64px)]">
         {route === "landing" && <Landing onStart={() => setRoute("agent")} />}
         {route === "agent" && (
           <Agent 
-            onResults={(p) => {
-              setProfile(p);
+            onResults={(profileData) => {
+              setProfile(profileData);
               setRoute("results");
             }} 
           />
@@ -94,15 +92,15 @@ export default function LeapAIProfileAgent() {
       <footer className="bg-black text-white">
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-white">
-            © {new Date().getFullYear()} LeapScholar. All rights reserved.
+            {new Date().getFullYear()} LeapScholar. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-gray-300 transition-colors">Privacy</a>
-      <a href="#" className="hover:text-gray-300 transition-colors">Terms</a>
-      <a href="#" className="hover:text-gray-300 transition-colors">Help</a>
-    </div>
-  </div>
-</footer>
+            <a href="#" className="hover:text-gray-300 transition-colors">Terms</a>
+            <a href="#" className="hover:text-gray-300 transition-colors">Help</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

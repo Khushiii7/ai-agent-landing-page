@@ -1,14 +1,8 @@
 "use client";
 
-import { CheckCircle2, Sparkles, ArrowRight, ShieldCheck, MessageSquare, School, Globe2, Users, Star, ChevronRight, BookOpen, Clock, PhoneCall } from "lucide-react";
+import { Sparkles, ShieldCheck, MessageSquare, School, PhoneCall, Users } from "lucide-react";
 
-// ---------- Small UI atoms ----------
-export const Pill = ({ children }) => (
-  <span className="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium bg-white/70 backdrop-blur border-slate-200">
-    {children}
-  </span>
-);
-
+// ---------- Layout Components ----------
 export const Section = ({ children, className = "" }) => (
   <section className={`w-full max-w-6xl mx-auto px-4 sm:px-6 ${className}`}>{children}</section>
 );
@@ -19,9 +13,9 @@ export const Card = ({ children, className = "" }) => (
   </div>
 );
 
-export const CardHeader = ({ title, subtitle, icon }) => (
-  <div className="p-5 border-b border-slate-100 flex items-center gap-3">
-    <div className="p-2 rounded-xl bg-slate-50">{icon}</div>
+export const CardHeader = ({ title, subtitle, icon, className = "" }) => (
+  <div className={`p-5 border-b border-slate-100 flex items-center gap-3 ${className}`}>
+    {icon && <div className="p-2 rounded-xl bg-slate-50">{icon}</div>}
     <div>
       <h3 className="text-lg font-semibold">{title}</h3>
       {subtitle && <p className="text-sm text-slate-500">{subtitle}</p>}
@@ -29,6 +23,7 @@ export const CardHeader = ({ title, subtitle, icon }) => (
   </div>
 );
 
+// ---------- Form Components ----------
 export const Button = ({ children, onClick, variant = "primary", className = "", type = "button" }) => {
   const base = "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-transform active:scale-[0.98]";
   const variants = {
@@ -43,7 +38,6 @@ export const Button = ({ children, onClick, variant = "primary", className = "",
   );
 };
 
-// ---------- Input Components ----------
 export const LabeledInput = ({ label, value, onChange, placeholder, type = 'text' }) => (
   <label className="block">
     <div className="text-sm font-medium mb-1">{label}</div>
@@ -54,6 +48,23 @@ export const LabeledInput = ({ label, value, onChange, placeholder, type = 'text
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
     />
+  </label>
+);
+
+export const LabeledSelect = ({ label, value, onChange, options = [] }) => (
+  <label className="block">
+    <div className="text-sm font-medium mb-1">{label}</div>
+    <select
+      className="w-full rounded-xl border border-slate-300 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200"
+      value={value || ""}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {options.map((o) => (
+        <option key={o} value={o}>
+          {o}
+        </option>
+      ))}
+    </select>
   </label>
 );
 
@@ -75,24 +86,14 @@ export const LabeledNumber = ({ label, value, onChange, min, max, step = 1 }) =>
   </label>
 );
 
-export const LabeledSelect = ({ label, value, onChange, options = [] }) => (
-  <label className="block">
-    <div className="text-sm font-medium mb-1">{label}</div>
-    <select
-      className="w-full rounded-xl border border-slate-300 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200"
-      value={value || ""}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {options.map((o) => (
-        <option key={o} value={o}>
-          {o}
-        </option>
-      ))}
-    </select>
-  </label>
+// ---------- UI Components ----------
+export const Pill = ({ children }) => (
+  <span className="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium bg-white/70 backdrop-blur border-slate-200">
+    {children}
+  </span>
 );
 
-// ---------- Data ----------
+// ---------- Data & Helpers ----------
 export const TRUST_BADGES = [
   { label: "1M+ counseling sessions", icon: <Users className="w-5 h-5" /> },
   { label: "Data-secure & private", icon: <ShieldCheck className="w-5 h-5" /> },

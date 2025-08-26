@@ -82,7 +82,7 @@ export default function Landing({ onStart }) {
           <Card>
             <CardHeader title="Rated 4.8/5 by students" subtitle="Real outcomes, real support" icon={<Users className="w-5 h-5 text-indigo-600" />} />
             <div className="p-6 text-sm text-slate-600">
-              "The AI shortlist felt spot‑on and saved me weeks. The advisor call clarified funding and deadlines."
+              &ldquo;The AI shortlist felt spot‑on and saved me weeks. The advisor call clarified funding and deadlines.&rdquo;
             </div>
           </Card>
           <Card>

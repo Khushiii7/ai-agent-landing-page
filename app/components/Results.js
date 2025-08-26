@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Star, CheckCircle2, PhoneCall, ArrowRight, Clock } from "lucide-react";
-import { Button, Card, CardHeader, Section } from "./UI";
+import { CheckCircle2, PhoneCall } from "lucide-react";
+import { Card, CardHeader, Section } from "./UI";
 import { MOCK_UNIVERSITIES, scoreUniversity } from "./UI";
 
 export default function Results({ profile, onRestart }) {
@@ -17,80 +16,61 @@ export default function Results({ profile, onRestart }) {
         <div className="text-center max-w-2xl mx-auto">
           <h1 className="text-3xl font-bold text-slate-900">Your University Matches</h1>
           <p className="mt-2 text-slate-600">
-            Based on your profile and preferences, we've found the best matches for you.
+            Based on your profile and preferences, we&apos;ve found the best matches for you.
           </p>
         </div>
 
         <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rankedUniversities.map((uni, index) => (
-            <motion.div
-              key={uni.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Card className="h-full flex flex-col">
-                <div className="p-5 border-b border-slate-100">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="font-semibold text-lg">{uni.name}</h3>
-                      <p className="text-sm text-slate-500">{uni.country}</p>
-                    </div>
-                    <div className="flex items-center bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
-                      <Star className="w-4 h-4 mr-1" />
-                      {uni.score}/100
-                    </div>
+            <Card key={uni.id} className="overflow-hidden hover:shadow-md transition-shadow">
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold">{uni.name}</h3>
+                    <p className="text-sm text-slate-600">{uni.country}</p>
+                  </div>
+                  <span className="px-2 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800">
+                    #{index + 1} Match
+                  </span>
+                </div>
+                
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Tuition:</span>
+                    <span className="font-medium">{uni.cost}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Deadline:</span>
+                    <span className="font-medium">{uni.deadline}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Admit Ease:</span>
+                    <span className="font-medium">{uni.admitEase}</span>
                   </div>
                 </div>
-                <div className="p-5 flex-grow">
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-500">Tuition (annual)</span>
-                      <span className="font-medium">{uni.cost}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-500">Application Deadline</span>
-                      <span className="font-medium">{uni.deadline}</span>
-                    </div>
-                    <div className="pt-2">
-                      <div className="flex flex-wrap gap-1">
-                        {uni.tags.map((tag, i) => (
-                          <span key={i} className="px-2 py-1 bg-slate-100 text-xs rounded-full text-slate-700">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+
+                <div className="mt-4 pt-4 border-t border-slate-100">
+                  <div className="flex flex-wrap gap-2">
+                    {uni.tags.map(tag => (
+                      <span key={tag} className="px-2 py-1 text-xs rounded-full bg-slate-100 text-slate-700">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <div className="p-4 border-t border-slate-100">
-                  <Button className="w-full">
-                    View Details
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </div>
-              </Card>
-            </motion.div>
+              </div>
+            </Card>
           ))}
         </div>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
+        <div className="mt-16 grid md:grid-cols-2 gap-6">
           <Card>
             <CardHeader 
-              title="Why these matches?" 
+              title="How we matched you" 
               icon={<CheckCircle2 className="w-5 h-5 text-indigo-600" />}
             />
             <div className="p-5 text-sm text-slate-600">
-              We've considered your academic profile, test scores, budget, and preferences to find the best matches for your goals.
-            </div>
-          </Card>
-          <Card>
-            <CardHeader 
-              title="Next steps" 
-              icon={<Star className="w-5 h-5 text-indigo-600" />}
-            />
-            <div className="p-5 text-sm text-slate-600">
-              Save your favorite universities and start preparing your application materials. Check the deadlines!
+              We&apos;ve considered your academic profile, test scores, budget, and preferences to find the best matches for your goals.
             </div>
           </Card>
           <Card>
@@ -105,9 +85,12 @@ export default function Results({ profile, onRestart }) {
         </div>
 
         <div className="mt-12 text-center">
-          <Button variant="ghost" onClick={onRestart}>
+          <button 
+            onClick={onRestart}
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium text-indigo-600 hover:bg-indigo-50 transition-colors"
+          >
             Start Over
-          </Button>
+          </button>
         </div>
       </Section>
     </div>

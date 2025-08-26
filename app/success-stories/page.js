@@ -1,6 +1,7 @@
 import { Card, CardHeader, Section } from "@/app/components/UI";
 import { SUCCESS_STORIES } from "@/app/data/stories";
 import { GraduationCap, Award, CheckCircle, Star } from "lucide-react";
+import Link from "next/link";
 
 export default function SuccessStoriesPage() {
   return (
@@ -64,13 +65,13 @@ export default function SuccessStoriesPage() {
           <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
             Join thousands of students who have achieved their study abroad dreams with our guidance
           </p>
-          <a
+          <Link
             href="/"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors"
           >
             Begin Your Journey
             <CheckCircle className="w-5 h-5" />
-          </a>
+          </Link>
         </div>
       </Section>
     </div>

@@ -106,7 +106,7 @@ export default function Agent({ onResults }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-indigo-50">
       <Section className="pt-10 pb-6">
-        <h2 className="text-2xl font-bold">Let's personalize your shortlist</h2>
+        <h2 className="text-2xl font-bold">Let&apos;s personalize your shortlist</h2>
         <div className="mt-6 w-full h-3 bg-slate-200 rounded-full overflow-hidden">
           <div className="h-3 bg-indigo-600 transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
